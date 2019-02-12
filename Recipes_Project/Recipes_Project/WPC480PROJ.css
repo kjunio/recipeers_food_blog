@@ -36,7 +36,7 @@ form{
 	height: 100%;
 }
 
-#registerPage button {
+#registerPage button, #loginPage button {
 	margin-top: 2%;
 	-moz-box-shadow:inset 0px 1px 0px 0px #307470;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #307470;
