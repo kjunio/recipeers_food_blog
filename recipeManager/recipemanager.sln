@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recipemanager", "recipemanager\recipemanager.csproj", "{FE145DAF-C224-4394-B14D-0BF6BCB27B5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE145DAF-C224-4394-B14D-0BF6BCB27B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE145DAF-C224-4394-B14D-0BF6BCB27B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE145DAF-C224-4394-B14D-0BF6BCB27B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE145DAF-C224-4394-B14D-0BF6BCB27B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47E2CE52-6958-4F63-94BC-75F70DD6F652}
+	EndGlobalSection
+EndGlobal
