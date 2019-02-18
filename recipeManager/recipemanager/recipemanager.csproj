@@ -82,14 +82,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="circleLogin.png" />
-    <Content Include="circleRegister.png" />
+    <Content Include="img\circleLogin.png" />
+    <Content Include="img\circleRegister.png" />
+    <Content Include="css\CreateRecipe.css" />
+    <Content Include="html\CreateRecipe.html" />
     <Content Include="Global.asax" />
-    <Content Include="GroupEating.jpg" />
-    <Content Include="Register_Account.html" />
-    <Content Include="Signin.html" />
+    <Content Include="img\GroupEating.jpg" />
+    <Content Include="html\Register_Account.html" />
+    <Content Include="html\Signin.html" />
+    <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="RecipeServices.asmx" />
-    <Content Include="WPC480PROJ.css" />
+    <Content Include="css\WPC480PROJ.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
