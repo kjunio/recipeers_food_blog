@@ -1,85 +1,65 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <link rel="stylesheet" href="../css/WPC480PROJ.css">
-    <!--<style type="text/css">
-      #registerPage .help-block{
-        display: none;
-      }
-      #registerPage {
-        font-family:Arial;
-        font-size:15px;
-        font-weight:bold;
-        color: white;
-        text-align: center;
-        padding:10%;
-        background: url("circleRegister.png") no-repeat center center local;
-        background-size: auto 100%;
-        height: 100%;
-      }
-      #registerPage button {
-    -moz-box-shadow:inset 0px 1px 0px 0px #307470;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #307470;
-    box-shadow:inset 0px 1px 0px 0px #307470;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #307470), color-stop(1, #42476D));
-    background:-moz-linear-gradient(top, #307470 5%, #42476D 100%);
-    background:-webkit-linear-gradient(top, #307470 5%, #42476D 100%);
-    background:-o-linear-gradient(top, #307470 5%, #42476D 100%);
-    background:-ms-linear-gradient(top, #307470 5%, #42476D 100%);
-    background:linear-gradient(to bottom, #307470 5%, #42476D 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#307470', endColorstr='#42476D',GradientType=0);
-    background-color:#307470;
-    -moz-border-radius:6px;
-    -webkit-border-radius:6px;
-    border-radius:6px;
-    border:1px solid #42476D;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:15px;
-    font-weight:bold;
-    padding:6px 24px;
-    text-decoration:none;
-      }
-    </style>-->
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="..\css\WPC480PROJ.CSS">
+  <!--<link rel="stylesheet" href="..\css\splashPageCSS.CSS">-->
+  <script
+	  src="https://code.jquery.com/jquery-3.3.1.js"
+	  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	  crossorigin="anonymous">  	
+  </script>
+  <script type="text/javascript" src="..\js\register.js"></script>
 </head>
 <body>
-    <div id="registerPage">
-        <form class="register" action="">
-            <label class="control-label" for="username"><h3>Username</h3></label>
-            <div class="controls">
+    <header>
+        <div class="menuSelection">
+            <nav>
+                <ul>
+                    <li><a href="Signin.html">Login</a></li>
+                    <li><a href="Register_Account.html">Sign Up</a></li>
+                    <li><a href="CreateRecipe.html">Recipes</a></li>       
+                </ul>
+            </nav>
+        </div>          
+    </header>
+
+    <div id="registerPage">         
+        <form class="register" id="register" action="">        
+              <label class="control-label"  for="username"><h3>Username</h3></label>
+              <div class="controls">
                 <input type="text" id="username" name="username" placeholder="" required>
                 <p class="help-block">Username can contain any letters or numbers, without spaces</p>
-            </div>
+              </div>
 
-            <label class="control-label" for="email"><h3>E-mail</h3></label>
-            <div class="controls">
+              <label class="control-label" for="email"><h3>E-mail</h3></label>
+              <div class="controls">
                 <input type="text" id="email" name="email" placeholder="" required>
                 <p class="help-block">Please provide your E-mail</p>
-            </div>
-
-            <label class="control-label" for="password"><h3>Password</h3></label>
-            <div class="controls">
+              </div>     
+            
+              <label class="control-label" for="password"><h3>Password</h3></label>
+              <div class="controls">
                 <input type="password" id="password" name="password" placeholder="" required>
                 <p class="help-block">Password should be at least 4 characters</p>
-            </div>
-
-            <label class="control-label" for="password_confirm"><h3>Password (Confirm)</h3></label>
-            <div class="controls">
-                <input type="password" id="password_confirm" name="password_confirm" placeholder="" required>
+              </div>     
+           
+              <label class="control-label"  for="passwordConfirm"><h3>Password (Confirm)</h3></label>
+              <div class="controls">
+                <input type="password" id="passwordConfirm" name="password_confirm" placeholder="" required>
                 <p class="help-block">Please confirm password</p>
-            </div>
-
-            <div class="control-group">
-                <!-- Button -->
-                <div class="controls">
-                    <button class="btn btn-success">Register</button>
-                </div>
+              </div>     
         </form>
-        <h5 class="signin">Already a member? <span><a href="../html/Signin.html">SIGN IN</a></span></h5>
-    </div>
+
+    <button id="registerButton" onclick="validateEntries()">Register</button>
+
+    <h5 class="signin">Already a member? <span><a href="Signin.html">SIGN IN</a></span></h5>
+  </div>
+   <!-- <footer>
+        <h1>THIS IS A FOOTER</h1>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus facilis, repudiandae quisquam. Nemo perspiciatis quo totam suscipit voluptas et rerum. Aut blanditiis consectetur nobis praesentium officia perferendis reiciendis. Nemo, incidunt.
+    </footer>-->
 </body>
 </html>
+

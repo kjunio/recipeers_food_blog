@@ -1,4 +1,12 @@
-﻿html {
+﻿*{
+	box-sizing: border-box;
+}
+
+body{
+	margin: 0;
+	text-align: center;
+}
+html {
     background: url(../img/GroupEating.jpg) no-repeat center center fixed;
     background-size: cover;
 }
@@ -34,43 +42,87 @@ form {
     height: 100%;
 }
 
-    #registerPage button, #loginPage button {
-        margin-top: 2%;
-        -moz-box-shadow: inset 0px 1px 0px 0px #307470;
-        -webkit-box-shadow: inset 0px 1px 0px 0px #307470;
-        box-shadow: inset 0px 1px 0px 0px #307470;
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #307470), color-stop(1, #42476D));
-        background: -moz-linear-gradient(top, #307470 5%, #42476D 100%);
-        background: -webkit-linear-gradient(top, #307470 5%, #42476D 100%);
-        background: -o-linear-gradient(top, #307470 5%, #42476D 100%);
-        background: -ms-linear-gradient(top, #307470 5%, #42476D 100%);
-        background: linear-gradient(to bottom, #307470 5%, #42476D 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#307470', endColorstr='#42476D',GradientType=0);
-        background-color: #307470;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        border-radius: 6px;
-        border: 1px solid #42476D;
-        display: inline-block;
-        cursor: pointer;
-        color: #ffffff;
-        font-family: Arial;
-        font-size: 15px;
-        font-weight: bold;
-        padding: 6px 24px;
-        text-decoration: none;
-    }
+header{
+	background-color: black;
+	width: 100%;
+	height: 90px;
+	margin: 0;
+	position: relative;
+	margin-bottom: 5%;
+}
+header a{
+	font-weight: 900;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 1.9rem;
+	padding: .1em;
+	color: white;
+}
+.menuSelection{
+	display: inline-block;
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+nav{
+	width: 550px;
 
-    #registerPage input {
-        border: none;
-        border-radius: 3px;
-        height: 22px;
-        font-family: Arial;
-        font-size: 15px;
-        color: #307470;
-    }
+}
+nav ul{
+	margin:0;
+	padding: 0;
+	list-style: none;
 
-    #registerPage .signin a {
-        text-decoration: none;
-        color: #307470;
-    }
+
+}
+
+nav li{
+	display: inline-block;
+	margin: 1em;
+}
+
+#registerPage button, #loginPage button {
+    margin-top: 2%;
+    -moz-box-shadow: inset 0px 1px 0px 0px #307470;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #307470;
+    box-shadow: inset 0px 1px 0px 0px #307470;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #307470), color-stop(1, #42476D));
+    background: -moz-linear-gradient(top, #307470 5%, #42476D 100%);
+    background: -webkit-linear-gradient(top, #307470 5%, #42476D 100%);
+    background: -o-linear-gradient(top, #307470 5%, #42476D 100%);
+    background: -ms-linear-gradient(top, #307470 5%, #42476D 100%);
+    background: linear-gradient(to bottom, #307470 5%, #42476D 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#307470', endColorstr='#42476D',GradientType=0);
+    background-color: #307470;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #42476D;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+}
+
+#registerPage input {
+    border: none;
+    border-radius: 3px;
+    height: 22px;
+    font-family: Arial;
+    font-size: 15px;
+    color: #307470;
+}
+
+#registerPage .signin a {
+    text-decoration: none;
+    color: #307470;
+}
+
+footer{
+	background-color: black;
+	color: white;
+}
