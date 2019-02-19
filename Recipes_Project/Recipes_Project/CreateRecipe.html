@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Create Recipe</title>
+<link rel="stylesheet" href="CreateRecipe.css">
+</head>
+<body>
+		<form action="">
+			<h1>Create Your Recipe</h1>
+
+					<h2>Recipe Name</h2>
+					<input type="text" name="recipeName" id="recipeNameInput" required></td>
+					<h3>Ingredients</h3>
+					<table>
+						<tr>
+							<td><h4>Ingredient Name</h4></td>
+							<td><input type="text" name="ingredientName" id="ingredientNameInput"></td>
+						</tr>
+						<tr>
+							<td><h4>Amount Used</h4></td>
+							<td><input type="text" name="amountUsed" id="amountUsedInput"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><button type="button" id="addIngredient">Add Ingredient</button></td>
+						</tr>
+					</table>
+					<ul id="ingredientList">
+					</ul>
+					<h3>Directions</h3>
+					<textarea name="directions" rows="10" cols="45" wrap="hard" id="directionsInput"></textarea>
+					<button type="button" id="createButton">Create</button>
+		</form>
+
+	<script type="text/javascript" src="./jquery-3.3.1.min.js"></script>
+	<script>
+		"use strict";
+		$("#addIngredient").on("click", function(event)//adds new item to ingredient list
+		{
+			var ingredientName = $("#ingredientNameInput").val()//grab ingredient name from input
+			var amountUsed = $("#amountUsedInput").val()//grab amount used from input
+			$("#ingredientList").append($('<li/>',{'class':'ingredientListItem', 'text':ingredientName + " " + amountUsed}));//appends item to existing list
+		});
+
+		$("#createButton").on("click", function(event)//creates object from form fields
+		{
+			var recipeName = $("#recipeNameInput").val();//stores name
+			var ingredientArray = [];//will be loaded with each list item through foreach
+			var directionsList = $("#directionsInput").val();//stores endtered directions
+			$(".ingredientListItem").each(function(){ingredientArray.push($(this).text())});
+			var recipe = {
+				name : recipeName,
+				ingredients : ingredientArray,
+				directions : directionsList
+			};
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="..\css\WPC480PROJ.CSS">
+  <!--<link rel="stylesheet" href="..\css\splashPageCSS.CSS">-->
+  <script
+	  src="https://code.jquery.com/jquery-3.3.1.js"
+	  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	  crossorigin="anonymous">  	
+  </script>
+  <script type="text/javascript" src="..\js\register.js"></script>
+</head>
+<body>
+    <header>
+        <div class="menuSelection">
+            <nav>
+                <ul>
+                    <li><a href="Signin.html">Login</a></li>
+                    <li><a href="splashPage.html">Home</a></li>
+                    <li><a href="CreateRecipe.html">Recipes</a></li>       
+                </ul>
+            </nav>
+        </div>          
+    </header>
+
+    <div id="registerPage">         
+        <form class="register" id="register" action="">        
+              <label class="control-label"  for="username"><h3>Username</h3></label>
+              <div class="controls">
+                <input type="text" id="username" name="username" placeholder="" required>
+                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+              </div>
+
+              <label class="control-label" for="email"><h3>E-mail</h3></label>
+              <div class="controls">
+                <input type="text" id="email" name="email" placeholder="" required>
+                <p class="help-block">Please provide your E-mail</p>
+              </div>     
+            
+              <label class="control-label" for="password"><h3>Password</h3></label>
+              <div class="controls">
+                <input type="password" id="password" name="password" placeholder="" required>
+                <p class="help-block">Password should be at least 4 characters</p>
+              </div>     
+           
+              <label class="control-label"  for="passwordConfirm"><h3>Password (Confirm)</h3></label>
+              <div class="controls">
+                <input type="password" id="passwordConfirm" name="password_confirm" placeholder="" required>
+                <p class="help-block">Please confirm password</p>
+              </div>     
+        </form>
+
+    <button id="registerButton" onclick="validateEntries()">Register</button>
+
+    <h5 class="signin">Already a member? <span><a href="Signin.html">SIGN IN</a></span></h5>
+  </div>
+   <!-- <footer>
+        <h1>THIS IS A FOOTER</h1>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus facilis, repudiandae quisquam. Nemo perspiciatis quo totam suscipit voluptas et rerum. Aut blanditiis consectetur nobis praesentium officia perferendis reiciendis. Nemo, incidunt.
+    </footer>-->
+</body>
+</html>
+

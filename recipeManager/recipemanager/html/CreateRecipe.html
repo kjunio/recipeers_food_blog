@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Create Recipe</title>
+	<link rel="stylesheet" href="../css/CreateRecipe.css">
+</head>
+<body>
+		<form action="">
+			<h1>Create Your Recipe</h1>
+
+					<h2>Recipe Name</h2>
+					<input type="text" name="recipeName" id="recipeNameInput" required></td>
+					<h3>Ingredients</h3>
+					<table class="recipeInputTable" id="ingredientInputTable">
+						<tr>
+							<td><h4>Ingredient Name</h4></td>
+							<td><input type="text" name="ingredientName" id="ingredientNameInput"></td>
+						</tr>
+						<tr>
+							<td><h4>Amount Used</h4></td>
+							<td><input type="text" name="amountUsed" id="amountUsedInput"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><button type="button" id="addIngredient">Add Ingredient</button></td>
+						</tr>
+					</table>
+					<ul id="ingredientList"></ul>
+					<h3>Utensils Needed</h3>
+					<table class="recipeInputTable" id="utensilInputTable">
+						<tr>
+							<td><h4>Utensil Description</h4></td>
+							<td><input type="text" name="utensilDescription" id="utensilDescriptionInput"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><button type="button" id="addUtensil">Add Utensil</button></td>
+						</tr>
+					</table>
+					<ul id="untesilList"></ul>
+					<h3>Directions</h3>
+					<table class="recipeInputTable" id="stepInputTable">
+						<tr>
+							<td><h4>Step Description</h4></td>
+							<td><textarea name="step" rows="3" cols="25" wrap="hard" id="stepDescriptionInput"></textarea></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><button type="button" id="addStep">Add Step</button></td>
+						</tr>
+					</table>
+					<ol id="stepList"></ol>
+					<br>
+					<br>
+					<button type="button" id="createButton">Create</button>
+		</form>
+
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../js/CreateRecipe.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	margin: 0;
+	text-align: center;
+}
+
+header{
+	margin: 1em;
+}
+
+nav{
+	width: 550px;
+
+}
+nav ul{
+	margin:0;
+	padding: 0;
+	list-style: none;
+
+
+}
+
+nav li{
+	display: inline-block;
+	margin: 1em;
+}
+
+a{
+	font-weight: 900;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 1.9rem;
+	padding: .1em;
+	color: white;
+}
+header{
+	background-color: black;
+	width: 100%;
+	height: 90px;
+	margin: 0;
+	position: relative;
+}
+
+footer{
+	background-color: black;
+	color: white;
+}
+
+
+.topFood img{
+	margin-right:100px;
+	border-style: solid;
+	border-color: black;
+}
+
+.choices img{
+	height: 300px;
+	width: 30%;
+
+}
+
+.choices h1{
+	position: absolute;
+	color: black;
+}
+
+.logo img{
+	height: 260px;
+	width: 260px;
+	position: absolute;
+	top: 0px;
+	bottom: -400px;
+	left: 830px;
+
+}
+.headerSection{
+	background-image: url("headerIMG.jpg");
+	background-size: cover;
+	background-position: center;
+	height: 250px;
+	width: 100%;
+}
+
+.headerSection h1{
+	margin:0;
+	position: absolute;
+	left: 700px;
+	top: 250px;
+	right: 670px;
+	font-size: 72px;
+
+}
+
+.menuSelection{
+	display: inline-block;
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.searchBar{
+	float: right;
+	display: inline-block;
+	position: absolute;
+	left: 1400px;
+	top: 0px;
+	margin: 20px;
+}
+
+
+#searchLink img{
+	height: 50px;
+	position: absolute;
+	top: 0;
+	left: 310px;
+
+}
+
+#bm{
+	height: 1.9rem;
+}
+#saveBM{
+	font-size: 1.9rem;
+	font-weight: 900;
+}
+
+#Categories{
+	margin: 0;
+	left: 240px;
+	top:880px;
+	font-size: 48px;
+	}
+
+#QE{
+	margin: 0;
+	left: 790px;
+	top:880px;
+	font-size: 48px;
+}
+
+#cost{
+	margin: 0;
+	left: 1350px;
+	top:880px;
+	font-size: 48px;
+}
