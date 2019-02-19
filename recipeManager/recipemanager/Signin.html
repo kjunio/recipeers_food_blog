@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="WPC480PROJ.CSS">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
+        function LogOnUser() {
+            var id = document.getElementById("username").value;
+            var pwd = document.getElementById("password").value;
+
+            LogOn(id, pwd);
+        }
+
         function LogOn(userId, pass) {
             
             //url of webservice we will be talking to
@@ -62,16 +69,16 @@
 
     <div id="loginPage">
         <h1>AMAZING FOOD WEBSITE</h1>
-        <form action="">
+        <form action="javascript:LogOnUser()">
             <h2>USER LOGIN</h2>
             <div id="loginInput">
                 <h3>USERNAME</h3>
-                <input type="text" name="userName" required>
+                <input id="username" type="text" name="userName" required>
                 <h3>PASSWORD</h3>
-                <input type="password" name="pass" required>
+                <input id="password" type="password" name="pass" required>
             </div>
 
-            <button>LOGIN</button>
+            <button type="submit">LOGIN</button>
             <h5>Not a member? <span><a href="Register_Account.html">SIGN UP</a></span></h5>
         </form>
     </div>

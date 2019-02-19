@@ -30,7 +30,7 @@ namespace recipemanager
             //connection string
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //sql query
-            string sqlSelect = "SELECT userID, admin FROM user WHERE userid=@idValue and password=@passValue";
+            string sqlSelect = "SELECT userID, admin FROM user WHERE username=@idValue and password=@passValue";
 
             //set up connection object to be ready to use our connection string
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
@@ -42,6 +42,7 @@ namespace recipemanager
             sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(uid));
             sqlCommand.Parameters.AddWithValue("@passValue", HttpUtility.UrlDecode(pass));
 
+
             //data adapter acts like a bridge between our command object 
             //and the data we are trying to get back and put in a table object
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
@@ -49,19 +50,45 @@ namespace recipemanager
             DataTable sqlDt = new DataTable();
             sqlDa.Fill(sqlDt);
             //check to see if any rows are returned. If they were, it means it's a legit account
-
+            //return sqlDt.Rows.Count;
             if(sqlDt.Rows.Count > 0)
             {
                 //if we found an account, store the id and admin status in the session
                 //so we can check those values later on other method calls to see if they
-                //are 1) logged in at all, and 2) an admin or not
-                Session["id"] = sqlDt.Rows[0]["id"];
+                //are 1) logged in at all, and 2) and admin or not
+                Session["userID"] = sqlDt.Rows[0]["userID"];
                 Session["admin"] = sqlDt.Rows[0]["admin"];
                 success = true;
+                //return true;
             }
 
             return success;
         }
+
+        [WebMethod(EnableSession =true)]
+        public void RequestAccount( string pass, string username, string email)
+        {
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            //select statement
+            string sqlSelect = "insert into user (password, username, email)" +
+                "values(@passValue, @usernameValue, @emailValue);";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@passValue", HttpUtility.UrlDecode(pass));
+            sqlCommand.Parameters.AddWithValue("@usernameValue", HttpUtility.UrlDecode(username));
+            sqlCommand.Parameters.AddWithValue("@emailValue", HttpUtility.UrlDecode(email));
+
+            //open the connection
+            sqlConnection.Open();
+            sqlCommand.ExecuteScalar();
+
+            sqlConnection.Close();
+        }
+
+
        
 
        

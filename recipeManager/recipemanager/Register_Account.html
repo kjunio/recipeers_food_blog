@@ -4,51 +4,94 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <link rel="stylesheet" href="WPC480PROJ.CSS">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!--<style type="text/css">
-      #registerPage .help-block{
-        display: none;
-      }
-      #registerPage {
+            #registerPage .help-block{
+                display: none;
+          }
+          #registerPage {
+                font - family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            color: white;
+            text-align: center;
+            padding:10%;
+            background: url("circleRegister.png") no-repeat center center local;
+            background-size: auto 100%;
+            height: 100%;
+          }
+          #registerPage button {
+                -moz - box - shadow:inset 0px 1px 0px 0px #307470;
+        -webkit-box-shadow:inset 0px 1px 0px 0px #307470;
+        box-shadow:inset 0px 1px 0px 0px #307470;
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #307470), color-stop(1, #42476D));
+        background:-moz-linear-gradient(top, #307470 5%, #42476D 100%);
+        background:-webkit-linear-gradient(top, #307470 5%, #42476D 100%);
+        background:-o-linear-gradient(top, #307470 5%, #42476D 100%);
+        background:-ms-linear-gradient(top, #307470 5%, #42476D 100%);
+        background:linear-gradient(to bottom, #307470 5%, #42476D 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#307470', endColorstr='#42476D',GradientType=0);
+        background-color:#307470;
+        -moz-border-radius:6px;
+        -webkit-border-radius:6px;
+        border-radius:6px;
+        border:1px solid #42476D;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
         font-family:Arial;
         font-size:15px;
         font-weight:bold;
-        color: white;
-        text-align: center;
-        padding:10%;
-        background: url("circleRegister.png") no-repeat center center local;
-        background-size: auto 100%;
-        height: 100%;
-      }
-      #registerPage button {
-    -moz-box-shadow:inset 0px 1px 0px 0px #307470;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #307470;
-    box-shadow:inset 0px 1px 0px 0px #307470;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #307470), color-stop(1, #42476D));
-    background:-moz-linear-gradient(top, #307470 5%, #42476D 100%);
-    background:-webkit-linear-gradient(top, #307470 5%, #42476D 100%);
-    background:-o-linear-gradient(top, #307470 5%, #42476D 100%);
-    background:-ms-linear-gradient(top, #307470 5%, #42476D 100%);
-    background:linear-gradient(to bottom, #307470 5%, #42476D 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#307470', endColorstr='#42476D',GradientType=0);
-    background-color:#307470;
-    -moz-border-radius:6px;
-    -webkit-border-radius:6px;
-    border-radius:6px;
-    border:1px solid #42476D;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:15px;
-    font-weight:bold;
-    padding:6px 24px;
-    text-decoration:none;
-      }
-    </style>-->
+        padding:6px 24px;
+        text-decoration:none;
+          }
+        </style>-->
+    <script type="text/javascript">
+        var pass;
+        var username;
+        var email;
+
+        function PassCreateAccountValues() {
+            pass = document.getElementById("password").value;
+            username = document.getElementById("username").value;
+            email = document.getElementById("email").value;
+
+            CreateAccount(pass, username, email);
+        }
+
+        function CreateAccount(pass, username, email) {
+            var webMethod = "RecipeServices.asmx/RequestAccount";
+            var parameters = "{\"pass\":\"" + encodeURI(pass) + "\",\"username\":\"" + encodeURI(username) + "\",\"email\":\"" + encodeURI(email) + "\"}";
+
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    //showPanel('logonPanel');
+                    alert("Account request pending approval...");
+                },
+                error: function (e) {
+                    alert("boo...");
+                }
+
+
+
+
+
+            });
+
+
+        }
+
+    </script>
 </head>
 <body>
     <div id="registerPage">
-        <form class="register" action="">
+        <form class="register" action="javascript:PassCreateAccountValues()">
             <label class="control-label" for="username"><h3>Username</h3></label>
             <div class="controls">
                 <input type="text" id="username" name="username" placeholder="" required>
@@ -76,7 +119,7 @@
             <div class="control-group">
                 <!-- Button -->
                 <div class="controls">
-                    <button class="btn btn-success">Register</button>
+                    <button class="btn btn-success" >Register</button>
                 </div>
         </form>
         <h5 class="signin">Already a member? <span><a href="Signin.html">SIGN IN</a></span></h5>
