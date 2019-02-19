@@ -4,8 +4,8 @@ $("#addIngredient").on("click", function(event)//adds new item to ingredient lis
 {
 	var ingredientName = $("#ingredientNameInput").val()//grab ingredient name from input
 	var amountUsed = $("#amountUsedInput").val()//grab amount used from input
-});	$("#ingredientList").append($('<li/>',{'class':'ingredientListItem', 'text': amountUsed + " " + ingredientName}));//appends item to existing list
-
+	$("#ingredientList").append($('<li/>',{'class':'ingredientListItem', 'text': amountUsed + " " + ingredientName}));//appends item to existing list
+});
 
 $("#addUtensil").on("click", function(event)//adds new item to utensil list
 {
