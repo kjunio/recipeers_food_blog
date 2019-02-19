@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>View Recipe</title>
+	<link rel="stylesheet" href="../css/CreateRecipe.css">
+</head>
+<body>
+	<div id="viewRecipeDiv">
+		<h1 id="recipeName"></h1>
+		<p id="creatorID"></p>
+		<table id="ratingTable">
+			<tr>
+				<td>
+					<p>Rating: </p>
+				</td>
+				<td>
+					<p>/5.0</p><!-- rating will be filled in by query to seperate rating table-->
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Rate Recipe:</p>
+				</td>
+				<td> </td>
+				<td>
+					<select name="ratingSelector" id="ratingSelector">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</td>
+				<td><button type="button" id="rateButton">Rate</button></td>
+			</tr>
+		</table>
+		<h2>Ingredients</h2>
+		<ul id="ingredientList"></ul>
+		<h2>Utensils Needed</h2>
+		<ul id="utensilList"></ul>
+		<h2>Directions</h3>
+		<ol id="stepList"></ol>
+	</div>
+
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../js/ViewRecipe.js"></script>
+</body>
+</html>
