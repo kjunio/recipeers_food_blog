@@ -82,15 +82,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\splashPageCSS.css" />
+    <Content Include="html\splashPage.html" />
+    <Content Include="html\ViewRecipe.html" />
+    <Content Include="img\bookMark.png" />
+    <Content Include="img\Chef.png" />
+    <Content Include="img\chef2.png" />
     <Content Include="img\circleLogin.png" />
     <Content Include="img\circleRegister.png" />
     <Content Include="css\CreateRecipe.css" />
     <Content Include="html\CreateRecipe.html" />
     <Content Include="Global.asax" />
+    <Content Include="img\crutons.jpg" />
+    <Content Include="img\fork.png" />
+    <Content Include="img\forks.jpg" />
     <Content Include="img\GroupEating.jpg" />
     <Content Include="html\Register_Account.html" />
     <Content Include="html\Signin.html" />
+    <Content Include="img\headerIMG.jpg" />
+    <Content Include="img\hotDog.jpg" />
+    <Content Include="img\pasta.jpg" />
+    <Content Include="img\plates.png" />
+    <Content Include="img\recipes.JPG" />
+    <Content Include="img\recipes1.JPG" />
+    <Content Include="img\recipes2.JPG" />
+    <Content Include="img\recipes3.JPG" />
+    <Content Include="img\search.ico" />
+    <Content Include="js\CreateRecipe.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
+    <Content Include="js\ViewRecipe.js" />
     <Content Include="RecipeServices.asmx" />
     <Content Include="css\WPC480PROJ.css" />
     <Content Include="Web.config">
