@@ -1,3 +1,9 @@
+var pass;
+var username;
+var email;
+var errorMessage;
+
+
 function validateEntries() {
     let username, email, password, passwordConf;
     username = $("#username").val();
@@ -5,7 +11,7 @@ function validateEntries() {
     password = $("#password").val();
     passwordConf = $("#passwordConfirm").val();
 
-    if (password != passwordConf) {
+    if (password !== passwordConf) {
         alert("Passwords do not match.");
         return;
     }
@@ -18,17 +24,17 @@ function validateEntries() {
         return;
     }
     if (!email.includes("@")) {
-        alert("Please use valid email address.")
+        alert("Please use valid email address.");
         return;
     }
-    else
-        PassCreateAccountValues();
+    else {
+        username = document.getElementById("username").value;
+        ValidateUsername(username);
+    }
+        
 }
 
-    var pass;
-    var username;
-    var email;
-
+   
     function PassCreateAccountValues() {
         pass = document.getElementById("password").value;
         username = document.getElementById("username").value;
@@ -36,6 +42,50 @@ function validateEntries() {
 
         CreateAccount(pass, username, email);
     }
+
+    function ValidateUsername(username) {
+    var webMethod = "../RecipeServices.asmx/ValidateUsername";
+    var parameters = "{\"username\":\"" + encodeURI(username) +  "\"}";
+    //jQuery ajax method
+    $.ajax({
+        
+        type: "POST",
+        //the url is set to the string we created above
+        url: webMethod,
+        //same with the data
+        data: parameters,
+        //these next two key/value pairs say we intend to talk in JSON format
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        //jQuery sends the data and asynchronously waits for a response.  when it
+        //gets a response, it calls the function mapped to the success key here
+        success: function (msg) {
+           
+            if (msg.d) {
+                //server replied true, so show the accounts panel
+                
+                alert("Username already exists. Please pick a different one and try again!");
+                document.getElementById("username").value = "";
+                document.getElementById("password").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("passwordConfirm").value = "";
+            }
+            else {
+                //server replied false, so let the user know
+                //the logon failed
+                PassCreateAccountValues();
+            }
+        },
+        error: function (e) {
+            //if something goes wrong in the mechanics of delivering the
+            //message to the server or the server processing that message,
+            //then this function mapped to the error key is executed rather
+            //than the one mapped to the success key.  This is just a garbage
+            //alert becaue I'm lazy
+           
+        }
+    });
+}
 
     function CreateAccount(pass, username, email) {
         var webMethod = "../RecipeServices.asmx/RequestAccount";

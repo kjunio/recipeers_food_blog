@@ -20,7 +20,7 @@ namespace recipemanager
     [System.Web.Script.Services.ScriptService]
     public class RecipeServices : System.Web.Services.WebService
     {
-        [WebMethod(EnableSession =true)]
+        [WebMethod(EnableSession = true)]
 
         public bool LogOn(string uid, string pass)
         {
@@ -51,7 +51,7 @@ namespace recipemanager
             sqlDa.Fill(sqlDt);
             //check to see if any rows are returned. If they were, it means it's a legit account
             //return sqlDt.Rows.Count;
-            if(sqlDt.Rows.Count > 0)
+            if (sqlDt.Rows.Count > 0)
             {
                 //if we found an account, store the id and admin status in the session
                 //so we can check those values later on other method calls to see if they
@@ -65,8 +65,49 @@ namespace recipemanager
             return success;
         }
 
-        [WebMethod(EnableSession =true)]
-        public void RequestAccount( string pass, string username, string email)
+        [WebMethod(EnableSession = true)]
+        //validates usernames
+        public bool ValidateUsername(string username)
+        {
+            //we return a flag to tell the user if they are logged in or not
+            bool success = false;
+
+            //connection string
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            //sql query
+            string sqlSelect = "SELECT * FROM user WHERE username=@usernameValue ";
+
+            //set up connection object to be ready to use our connection string
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            //set up our command object to use our connection and our query
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            //tell command to replace the @parameters with real values
+            //decode them because they came to use via the web so they were encoded
+            sqlCommand.Parameters.AddWithValue("@usernameValue", HttpUtility.UrlDecode(username));
+      
+
+
+            //data adapter acts like a bridge between our command object 
+            //and the data we are trying to get back and put in a table object
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            //Here's the table we want to fill with the results from our query
+            DataTable sqlDt = new DataTable();
+            sqlDa.Fill(sqlDt);
+            //check to see if any rows are returned. If they were, it means it's a legit account
+            //return sqlDt.Rows.Count;
+            if (sqlDt.Rows.Count > 0)
+            {
+                
+                success = true;
+                //return true;
+            }
+
+            return success;
+        }
+
+        [WebMethod(EnableSession = true)]
+        public void RequestAccount(string pass, string username, string email)
         {
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
 
@@ -87,25 +128,36 @@ namespace recipemanager
 
             sqlConnection.Close();
         }
-        [WebMethod(EnableSession =true)]
-        /*public bool StoreUser(string username)
+
+        //Allows the user to create a new recipe and insert it into the d 
+        [WebMethod(EnableSession = true)]
+        public void RequestRecipe(string recipeName, string ingredients, string description, string amountUsed, string utensilDescription)
         {
-            bool success = false;
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
-            string sqlSelect = "SELECT userID FROM user WHERE username=@usernameValue";
+
+            //select statement
+            string sqlSelect = "insert into recipe (recipeName, ingredients, description, amountUsed, utensilDescription)" +
+                "values(@recipeNameValue, @ingredientsValue, @descriptionValue, @amountUsedValue, @utensilDescriptionValue);";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(username));
 
-            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
-            
+            sqlCommand.Parameters.AddWithValue("@recipeNameValue", HttpUtility.UrlDecode(recipeName));
+            sqlCommand.Parameters.AddWithValue("@ingredientsValue", HttpUtility.UrlDecode(ingredients));
+            sqlCommand.Parameters.AddWithValue("@descriptionValue", HttpUtility.UrlDecode(description));
+            sqlCommand.Parameters.AddWithValue("@amountUsedValue", HttpUtility.UrlDecode(amountUsed));
+            sqlCommand.Parameters.AddWithValue("@utensilDescription", HttpUtility.UrlDecode(utensilDescription));
+
+
+            //open the connection
+            sqlConnection.Open();
+            sqlCommand.ExecuteScalar();
+
+            sqlConnection.Close();
         }
-        */
 
 
-       
 
-       
+
     }
 }

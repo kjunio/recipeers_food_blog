@@ -2,20 +2,20 @@
 "use strict";
 $("#addIngredient").on("click", function(event)//adds new item to ingredient list
 {
-	var ingredientName = $("#ingredientNameInput").val()//grab ingredient name from input
-	var amountUsed = $("#amountUsedInput").val()//grab amount used from input
+    var ingredientName = $("#ingredientNameInput").val();//grab ingredient name from input
+    var amountUsed = $("#amountUsedInput").val();//grab amount used from input
 	$("#ingredientList").append($('<li/>',{'class':'ingredientListItem', 'text': amountUsed + " " + ingredientName}));//appends item to existing list
 });
 
 $("#addUtensil").on("click", function(event)//adds new item to utensil list
 {
-	var utensilDescription = $("#utensilDescriptionInput").val()//grab utensil description from input
+    var utensilDescription = $("#utensilDescriptionInput").val();//grab utensil description from input
 	$("#untesilList").append($('<li/>',{'class':'utensilListItem', 'text': utensilDescription}));//appends item to existing list
 });
 
 $("#addStep").on("click", function(event)//adds new item to step list
 {
-	var stepDescription = $("#stepDescriptionInput").val()//grab step description from input
+    var stepDescription = $("#stepDescriptionInput").val();//grab step description from input
 	$("#stepList").append($('<li/>',{'class':'stepListItem', 'text': stepDescription}));//appends item to existing list
 });
 
@@ -39,9 +39,13 @@ $("#addStep").on("click", function(event)//adds new item to step list
 	};
 });
 */
-function CreateRecipe(pass, username, email) {
-    var webMethod = "../RecipeServices.asmx/RequestAccount";
-    var parameters = "{\"pass\":\"" + encodeURI(pass) + "\",\"username\":\"" + encodeURI(username) + "\",\"email\":\"" + encodeURI(email) + "\"}";
+/*function PassCreateRecipeValues() {
+    var recipeName = document.getElementById("ingredientNameInput").value;
+    var ingredients = document.getElementById("")
+}*/
+function CreateRecipe(recipeName, ingredients, description, amountUsed, utensilDescription) {
+    var webMethod = "../RecipeServices.asmx/RequestRecipe";
+    var parameters = "{\"recipeName\":\"" + encodeURI(recipeName) + "\",\"ingredients\":\"" + encodeURI(ingredients) + "\",\"description\":\"" + encodeURI(description) + "\",\"amountUsed\":\""+ encodeURI(amountUsed) + "\",\"utensilDescription\":\"" + "\"}";
 
     $.ajax({
         type: "POST",
@@ -51,7 +55,7 @@ function CreateRecipe(pass, username, email) {
         dataType: "json",
         success: function (msg) {
             //showPanel('logonPanel');
-            window.open("splashPage.html", "_self");
+            alert("Created Recipe");
         },
         error: function (e) {
             alert("boo...");
