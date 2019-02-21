@@ -19,7 +19,7 @@ $("#addStep").on("click", function(event)//adds new item to step list
 	$("#stepList").append($('<li/>',{'class':'stepListItem', 'text': stepDescription}));//appends item to existing list
 });
 
-$("#createButton").on("click", function(event)//creates object from form fields
+/*$("#createButton").on("click", function(event)//creates object from form fields
 {
 	var recipeName = $("#recipeNameInput").val();//stores name
 	var ingredientArray = [];//will be loaded with each ingredient
@@ -38,3 +38,28 @@ $("#createButton").on("click", function(event)//creates object from form fields
 		directions : stepArray
 	};
 });
+*/
+function CreateRecipe(pass, username, email) {
+    var webMethod = "../RecipeServices.asmx/RequestAccount";
+    var parameters = "{\"pass\":\"" + encodeURI(pass) + "\",\"username\":\"" + encodeURI(username) + "\",\"email\":\"" + encodeURI(email) + "\"}";
+
+    $.ajax({
+        type: "POST",
+        url: webMethod,
+        data: parameters,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            //showPanel('logonPanel');
+            window.open("splashPage.html", "_self");
+        },
+        error: function (e) {
+            alert("boo...");
+        }
+
+
+
+
+
+    });
+}

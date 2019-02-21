@@ -87,6 +87,21 @@ namespace recipemanager
 
             sqlConnection.Close();
         }
+        [WebMethod(EnableSession =true)]
+        /*public bool StoreUser(string username)
+        {
+            bool success = false;
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            string sqlSelect = "SELECT userID FROM user WHERE username=@usernameValue";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@idValue", HttpUtility.UrlDecode(username));
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            
+        }
+        */
 
 
        

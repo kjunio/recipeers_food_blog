@@ -61,7 +61,7 @@
         }
 
         function CreateAccount(pass, username, email) {
-            var webMethod = "RecipeServices.asmx/RequestAccount";
+            var webMethod = "../RecipeServices.asmx/RequestAccount";
             var parameters = "{\"pass\":\"" + encodeURI(pass) + "\",\"username\":\"" + encodeURI(username) + "\",\"email\":\"" + encodeURI(email) + "\"}";
 
             $.ajax({
