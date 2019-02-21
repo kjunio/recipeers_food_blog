@@ -131,29 +131,39 @@ namespace recipemanager
 
         //Allows the user to create a new recipe and insert it into the d 
         [WebMethod(EnableSession = true)]
-        public void RequestRecipe(string recipeName, string ingredients, string description, string amountUsed, string utensilDescription)
+        public int RequestRecipe(string recipeName, string ingredients, string utensils, string directions)
         {
-            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            if (Session["userID"] != null)
+            {
+                string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+                int userID = Session["userID"];
+                //select statement
+                string sqlSelect = "insert into recipe (userID, recipeName, ingredients, utensils, directions)" +
+                    "values(@userID, @recipeName, @indredients, @utensils, @directions); SELECT LAST_INSERT_ID();";
 
-            //select statement
-            string sqlSelect = "insert into recipe (recipeName, ingredients, description, amountUsed, utensilDescription)" +
-                "values(@recipeNameValue, @ingredientsValue, @descriptionValue, @amountUsedValue, @utensilDescriptionValue);";
+                MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+                MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
-            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
-            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
-
-            sqlCommand.Parameters.AddWithValue("@recipeNameValue", HttpUtility.UrlDecode(recipeName));
-            sqlCommand.Parameters.AddWithValue("@ingredientsValue", HttpUtility.UrlDecode(ingredients));
-            sqlCommand.Parameters.AddWithValue("@descriptionValue", HttpUtility.UrlDecode(description));
-            sqlCommand.Parameters.AddWithValue("@amountUsedValue", HttpUtility.UrlDecode(amountUsed));
-            sqlCommand.Parameters.AddWithValue("@utensilDescription", HttpUtility.UrlDecode(utensilDescription));
+                sqlCommand.Parameters.AddWithValue("@userID", HttpUtility.UrlDecode(userID));
+                sqlCommand.Parameters.AddWithValue("@recipeNameValue", HttpUtility.UrlDecode(recipeName));
+                sqlCommand.Parameters.AddWithValue("@ingredientsValue", HttpUtility.UrlDecode(ingredients));
+                sqlCommand.Parameters.AddWithValue("@descriptionValue", HttpUtility.UrlDecode(utensils));
+                sqlCommand.Parameters.AddWithValue("@amountUsedValue", HttpUtility.UrlDecode(directions));
 
 
-            //open the connection
-            sqlConnection.Open();
-            sqlCommand.ExecuteScalar();
-
-            sqlConnection.Close();
+                //open the connection
+                sqlConnection.Open();
+                try
+                {
+                    int accountID = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                    return accountID;
+                }
+                catch (Exception e)
+                {
+                }
+                sqlConnection.Close();
+            }
+            
         }
 
 
