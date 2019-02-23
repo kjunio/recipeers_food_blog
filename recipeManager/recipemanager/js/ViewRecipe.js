@@ -1,33 +1,58 @@
 "use strict";
-var testRecipe = {
-		recipeID : "test",
-		name : "Steamed Rice",
-		creator : "Lorenzo",
-		ingredients : ["2 cups white rice","3 cups water"],
-		utensils : ["Measuring cup with a volume of at least 3 cups","Small/Medium Rice Cooker"],
-		directions : ["Measure 2 cups of dry rice in measuring cup","Add rice to rice cooker","Measure 3 cups of water in measuring cup","Pour into rice cooker","Close rice cooker lid and turn on","Wait for rice cooker to finish and then sereve"]
-};
 
-$(document).ready(recipeUnpacker(testRecipe));
-
-function recipeUnpacker(packedRecipe){
-	var recipe = packedRecipe;
-	$("#recipeName").text(recipe.name);//set recipe name
-	$("#creatorID").text("Created by:"+" "+recipe.creator);//set creator name
-	//.forEach() loops through each element in the provided array and will be used to populate lists on the page with data from object arrays
-	recipe.ingredients.forEach(function(ingredient){$("#ingredientList").append($('<li/>',{'class':'ingredientListItem', 'text': ingredient}))});
-	recipe.utensils.forEach(function(utensil){$("#utensilList").append($('<li/>',{'class':'utensilListItem', 'text': utensil}))});
-	recipe.directions.forEach(function(step){$("#stepList").append($('<li/>',{'class':'stepListItem', 'text': step}))});
-};
-
-$("#rateButton").on("click",function(event)
-{
-	var recipeID = testRecipe.recipeID;
-	var raterID = "userID";//need to pull id from active login
-	var rating = $("#ratingSelector").val();
-	var newRating = {
-		recipeID: recipeID,
-		raterID: raterID,
-		rating: rating
-	}
+$(document).ready(function(){
+	var pageURL = window.location.href;
+    var recipeID = parseURLParams(pageURL);	
+    console.log(recipeID);
 });
+
+//funvction to pull apart a URL that has had some variable placed within it to pass data
+function parseURLParams(url) {
+	//finds where attribute starts
+    var queryStart = url.indexOf("?") + 1;
+    //finds end
+    var queryEnd   = url.indexOf("#") + 1 || url.length + 1;
+        //pulls out name:value pair
+    var query = url.slice(queryStart, queryEnd - 1);
+        //sets up pairs and replaces delimiters with " "
+    var pairs = query.replace(/\+/g, " ").split("&");
+        //creates parameter object, index, name, value, and name:value pair placeholders
+    var parms = {}, i, n, v, nv;
+    //only works if 
+    if (query === url || query === "") return;
+
+    for (i = 0; i < pairs.length; i++) {
+        nv = pairs[i].split("=", 2);
+        n = decodeURIComponent(nv[0]);
+        v = decodeURIComponent(nv[1]);
+
+        if (!parms.hasOwnProperty(n)) parms[n] = [];
+        parms[n].push(nv.length === 2 ? v : null);
+    }
+    //returns object {name = "value"}
+    return parms;
+};
+
+//function to unpack the recipe
+function recipeUnpacker(recipeID) {
+    //calls function to pull recipe from db
+    var webMethod = "../RecipeServices.asmx/ViewRecipe";
+    $.ajax({
+        type: "POST",
+        url: webMethod,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (msg) {
+            //creates and sets recipe object equal to returned datat object
+            var recipe = msg.d;
+        }
+    });
+    //set variables equal to recipe properties
+    var userID = recipe.userID;
+    var ingredients = recipe.ingredients.split(",");
+    var utensils = recipe.utensils.split(",");
+    var directions = recipe.directions.split(",");
+    //fill in page elements
+};
+
+
