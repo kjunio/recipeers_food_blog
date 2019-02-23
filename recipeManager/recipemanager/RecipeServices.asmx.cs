@@ -129,14 +129,14 @@ namespace recipemanager
             sqlConnection.Close();
         }
 
-        //Allows the user to create a new recipe and insert it into the d 
+        //Allows the user to create a new recipe and insert it into the database
         [WebMethod(EnableSession = true)]
-        public int RequestRecipe(string recipeName, string ingredients, string utensils, string directions)
+        public string RequestRecipe(string recipeName, string ingredients, string utensils, string directions)
         {
             if (Session["userID"] != null)
             {
                 string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
-                int userID = Session["userID"];
+                string userID = Session["userID"].ToString();
                 //select statement
                 string sqlSelect = "insert into recipe (userID, recipeName, ingredients, utensils, directions)" +
                     "values(@userID, @recipeName, @indredients, @utensils, @directions); SELECT LAST_INSERT_ID();";
@@ -155,7 +155,7 @@ namespace recipemanager
                 sqlConnection.Open();
                 try
                 {
-                    int accountID = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                    string accountID = Convert.ToInt32(sqlCommand.ExecuteScalar());
                     return accountID;
                 }
                 catch (Exception e)
@@ -166,7 +166,35 @@ namespace recipemanager
             
         }
 
+        //EXAMPLE OF A SIMPLE SELECT QUERY (PARAMETERS PASSED IN FROM CLIENT)
+        [WebMethod(EnableSession = true)] //NOTICE: gotta enable session on each individual method
+        public Recipe ViewRecipe(string recipeID)
+        {
 
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            //pull recipe from database, use id that was passed in url
+            string sqlSelect = "SELECT recipeID, userID, ingredients, utensils, directions FROM recipes WHERE recipeID=@recipeID";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@recipeID", HttpUtility.UrlDecode(recipeID));
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            DataTable sqlDt = new DataTable();
+            sqlDa.Fill(sqlDt);
+            //then mimic GetAccounts
+            //set each item in the data table equal to a recipe property
+            Recipe recipe = new Recipe
+            {
+                recipeID = Convert.ToInt32(recipeID),
+                userID = Convert.ToInt32(sqlDt.Rows[0]["userID"]),
+                ingredients = sqlDt.Rows[0]["ingredients"].ToString(),
+                utensils = sqlDt.Rows[0]["utensils"].ToString(),
+                directions = sqlDt.Rows[0]["directions"].ToString()
+            };
+
+            return recipe;
+        }
 
 
     }
