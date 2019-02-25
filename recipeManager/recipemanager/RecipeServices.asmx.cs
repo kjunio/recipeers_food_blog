@@ -158,6 +158,73 @@ namespace recipemanager
             sqlConnection.Close();
         }
 
+        //checks if user is logged in, return userID and email true
+        [WebMethod(EnableSession = true)]
+        public string GetProfile()
+        {
+            if (Session["userID"] != null)
+            {
+                string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+                string userID = Session["userID"].ToString();
+                //select statement
+                string sqlSelect = "SELECT email FROM user WHERE userID=@userID";
+
+                MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+                MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+               
+                sqlCommand.Parameters.AddWithValue("@userID", HttpUtility.UrlDecode(userID));
+
+                MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+                DataTable sqlDt = new DataTable();
+                sqlDa.Fill(sqlDt);
+
+                User userProfile = new User
+                {
+                    session = true,
+                    userId = userID,
+                    email = sqlDt.Rows[0]["email"].ToString()                    
+                };
+
+                return userProfile;
+            }
+            else
+            {
+                User userProfile = new User
+                {
+                    session = false
+                };
+                return userProfile;
+            }
+
+        }
+
+        //checks if user is logged in, return userID and email true
+        [WebMethod(EnableSession = true)]
+        public string GetProfileRecipes(string userID)
+        {            
+                string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+                
+                //select statement
+                string sqlSelect = "SELECT recipeID, recipeName FROM recipe WHERE userID=@userID";
+
+                MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+                MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+                sqlCommand.Parameters.AddWithValue("@userID", HttpUtility.UrlDecode(userID));
+
+                MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+                DataTable sqlDt = new DataTable();
+                sqlDa.Fill(sqlDt);
+
+                Recipe userRecipes = new Recipe
+                {   
+                    recipeId = sqlDt.Rows[0]["recipeID"].ToString(),
+                    recipeName = sqlDt.Rows[0]["recipeName"].ToString()
+                };
+
+                return userRecipes;           
+
+        }
 
     }
 }

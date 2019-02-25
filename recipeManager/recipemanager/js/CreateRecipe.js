@@ -7,22 +7,68 @@ var utensilDescription;
 
 $("#addIngredient").on("click", function(event)//adds new item to ingredient list
 {
-    var ingredientName = $("#ingredientNameInput").val();//grab ingredient name from input
-    var amountUsed = $("#amountUsedInput").val();//grab amount used from input
-	$("#ingredientList").append($('<li/>',{'class':'ingredientListItem', 'text': amountUsed + " " + ingredientName}));//appends item to existing list
-});
+    var ul = document.getElementById('ingredientList')
+     var li = document.createElement('li');
+    
+    //grab ingredient name from input
+    var amountUsed = document.getElementById('amountUsedInput'); //grab amount used from input
+    var checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.value = 1;
+        checkbox.name = "todo[]";
 
-$("#addUtensil").on("click", function(event)//adds new item to utensil list
-{
-    var utensilDescription = $("#utensilDescriptionInput").val();//grab utensil description from input
-	$("#untesilList").append($('<li/>',{'class':'utensilListItem', 'text': utensilDescription}));//appends item to existing list
-});
+    li.appendChild(checkbox);
+    var ingredientName = document.getElementById('ingredientNameInput');
+    li.appendChild(document.createTextNode(ingredientName.value +" "+ amountUsed.value));
+    ul.appendChild(li); 
+	//appends item to existing list
+    
+    
+    document.getElementById('ingredientNameInput').value = "";
+    document.getElementById('amountUsedInput').value = "";
+};
 
-$("#addStep").on("click", function(event)//adds new item to step list
+            
+
+function addUtensil()//adds new item to ingredient list
 {
-    var stepDescription = $("#stepDescriptionInput").val();//grab step description from input
-	$("#stepList").append($('<li/>',{'class':'stepListItem', 'text': stepDescription}));//appends item to existing list
-});
+    var ul = document.getElementById('untesilList');
+    var li = document.createElement('li');
+    
+    //grab ingredient name from input
+    var utensilDesc = document.getElementById('utensilDescriptionInput'); //grab amount used from input
+    var checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.value = 1;
+        checkbox.name = "todo[]";
+
+    li.appendChild(checkbox);
+    li.appendChild(document.createTextNode(utensilDesc.value));
+    ul.appendChild(li); 
+    //appends item to existing list
+    document.getElementById('utensilDescriptionInput').value = "";
+ 
+};
+
+function addDirection()//adds new item to ingredient list
+{
+    var ol = document.getElementById('stepList');
+    var li = document.createElement('li');
+    
+    //grab ingredient name from input
+    var steps = document.getElementById('stepDescriptionInput'); //grab amount used from input
+    var checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.value = 1;
+        checkbox.name = "todo[]";
+
+    li.appendChild(checkbox);
+    li.appendChild(document.createTextNode(steps.value));
+    ol.appendChild(li); 
+    //appends item to existing list
+    document.getElementById('stepDescriptionInput').value = "";
+ 
+};
 
 /*$("#createButton").on("click", function(event)//creates object from form fields
 {
