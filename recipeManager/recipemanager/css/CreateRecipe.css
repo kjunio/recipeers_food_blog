@@ -37,7 +37,12 @@ table
 	width: 50%;
 }
 
-ul, ol
+ul
+{
+	text-align: left;
+	list-style-type: none;
+}
+ol
 {
 	text-align: left;
 }
