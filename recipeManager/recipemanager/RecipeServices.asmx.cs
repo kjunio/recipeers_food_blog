@@ -131,13 +131,13 @@ namespace recipemanager
 
         //Allows the user to create a new recipe and insert it into the d 
         [WebMethod(EnableSession = true)]
-        public void RequestRecipe(string recipeName, string ingredients, string description, string amountUsed, string utensilDescription)
+        public void RequestRecipe(string recipeName, string ingredients, string description, string utensilDescription)
         {
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
 
             //select statement
-            string sqlSelect = "insert into recipe (recipeName, ingredients, description, amountUsed, utensilDescription)" +
-                "values(@recipeNameValue, @ingredientsValue, @descriptionValue, @amountUsedValue, @utensilDescriptionValue);";
+            string sqlSelect = "insert into recipe (recipeName, ingredients, description, utensilDescription)" +
+                "values(@recipeNameValue, @ingredientsValue, @descriptionValue, @utensilDescriptionValue);";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
@@ -145,8 +145,7 @@ namespace recipemanager
             sqlCommand.Parameters.AddWithValue("@recipeNameValue", HttpUtility.UrlDecode(recipeName));
             sqlCommand.Parameters.AddWithValue("@ingredientsValue", HttpUtility.UrlDecode(ingredients));
             sqlCommand.Parameters.AddWithValue("@descriptionValue", HttpUtility.UrlDecode(description));
-            sqlCommand.Parameters.AddWithValue("@amountUsedValue", HttpUtility.UrlDecode(amountUsed));
-            sqlCommand.Parameters.AddWithValue("@utensilDescription", HttpUtility.UrlDecode(utensilDescription));
+            sqlCommand.Parameters.AddWithValue("@utensilDescriptionValue", HttpUtility.UrlDecode(utensilDescription));
 
 
             //open the connection

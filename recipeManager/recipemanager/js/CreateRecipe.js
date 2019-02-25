@@ -1,5 +1,10 @@
 
 "use strict";
+var recipeName;
+var ingredients;
+var description;
+var utensilDescription;
+
 $("#addIngredient").on("click", function(event)//adds new item to ingredient list
 {
     var ingredientName = $("#ingredientNameInput").val();//grab ingredient name from input
@@ -39,13 +44,17 @@ $("#addStep").on("click", function(event)//adds new item to step list
 	};
 });
 */
-/*function PassCreateRecipeValues() {
-    var recipeName = document.getElementById("ingredientNameInput").value;
-    var ingredients = document.getElementById("")
-}*/
-function CreateRecipe(recipeName, ingredients, description, amountUsed, utensilDescription) {
+function PassCreateRecipeValues() {
+     recipeName = document.getElementById("recipeNameInput").value;
+     ingredients = document.getElementById("ingredientList").innerHTML;
+     description = document.getElementById("stepList").innerHTML;
+     utensilDescription = document.getElementById("utensilList").innerHTML;
+
+    CreateRecipe(recipeName, ingredients, description, utensilDescription);
+}
+function CreateRecipe(recipeName, ingredients, description, utensilDescription) {
     var webMethod = "../RecipeServices.asmx/RequestRecipe";
-    var parameters = "{\"recipeName\":\"" + encodeURI(recipeName) + "\",\"ingredients\":\"" + encodeURI(ingredients) + "\",\"description\":\"" + encodeURI(description) + "\",\"amountUsed\":\""+ encodeURI(amountUsed) + "\",\"utensilDescription\":\"" + "\"}";
+    var parameters = "{\"recipeName\":\"" + encodeURI(recipeName) + "\",\"ingredients\":\"" + encodeURI(ingredients) + "\",\"description\":\"" + encodeURI(description) + "\",\"utensilDescription\":\"" + "\"}";
 
     $.ajax({
         type: "POST",

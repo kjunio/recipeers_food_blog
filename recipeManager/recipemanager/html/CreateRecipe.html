@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../css/CreateRecipe.css">
 </head>
 <body>
-    <form action="">
+    <form action="javascript:PassCreateRecipeValues()">
         <h1>Create Your Recipe</h1>
 
         <h2>Recipe Name</h2>
@@ -38,7 +38,7 @@
                 <td><button type="button" id="addUtensil">Add Utensil</button></td>
             </tr>
         </table>
-        <ul id="untesilList"></ul>
+        <ul id="utensilList"></ul>
         <h3>Directions</h3>
         <table class="recipeInputTable" id="stepInputTable">
             <tr>
@@ -53,7 +53,7 @@
         <ol id="stepList"></ol>
         <br>
         <br>
-        <button type="button" id="createButton">Create</button>
+        <button onclick="PassCreateRecipeValues()" type="button" id="createButton">Create</button>
     </form>
 
     <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
