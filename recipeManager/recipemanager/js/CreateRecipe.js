@@ -63,8 +63,10 @@ function CreateRecipe(recipeName, ingredients, description, utensilDescription) 
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (msg) {
-            //showPanel('logonPanel');
-            alert("Created Recipe");
+            if (msg.d != null) {
+                var recipeID = msg.d;
+                window.open("ViewRecipe.html?id="+ msg.d, "_self");
+            }
         },
         error: function (e) {
             alert("boo...");

@@ -129,19 +129,22 @@ namespace recipemanager
             sqlConnection.Close();
         }
 
-        //Allows the user to create a new recipe and insert it into the d 
+        //Allows the user to create a new recipe and insert it into the database
         [WebMethod(EnableSession = true)]
         public void RequestRecipe(string recipeName, string ingredients, string description, string utensilDescription)
         {
-            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
-
+            
+                string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+                
+           
             //select statement
             string sqlSelect = "insert into recipe (recipeName, ingredients, description, utensilDescription)" +
                 "values(@recipeNameValue, @ingredientsValue, @descriptionValue, @utensilDescriptionValue);";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
-
+            
+            
             sqlCommand.Parameters.AddWithValue("@recipeNameValue", HttpUtility.UrlDecode(recipeName));
             sqlCommand.Parameters.AddWithValue("@ingredientsValue", HttpUtility.UrlDecode(ingredients));
             sqlCommand.Parameters.AddWithValue("@descriptionValue", HttpUtility.UrlDecode(description));
@@ -154,8 +157,6 @@ namespace recipemanager
 
             sqlConnection.Close();
         }
-
-
 
 
     }
