@@ -11,6 +11,7 @@ namespace recipemanager
         public int userID;
         //have to pull arrays as string because they are stored as strings
         //will need to be split using JS into multiple strings and placed in an array
+        public string recipeName;
         public string ingredients;
         public string utensils;
         public string directions;

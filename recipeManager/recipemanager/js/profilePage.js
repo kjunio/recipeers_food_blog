@@ -1,15 +1,17 @@
 window.onload = function isUserLoggedIn() {
     var webMethod = "../RecipeServices.asmx/GetProfile";
+    var profile
     $.ajax({
         type: "GET",
         url: webMethod,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (msg) {            
-            var profile = msg.d;
+        success: function (msg) {
+            alert("success");
+            profile = msg.d;
         }
     });
-    if (!profile.session) {
+    if (profile.session == "none") {
         alert("Please login to view Profile.");
         //window.open("Signin.html","_self")
         return;

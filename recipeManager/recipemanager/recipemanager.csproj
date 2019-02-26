@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\splashPageCSS.css" />
+    <Content Include="html\profilePage.html" />
     <Content Include="html\splashPage.html" />
     <Content Include="html\ViewRecipe.html" />
     <Content Include="img\bookMark.png" />
@@ -111,6 +112,7 @@
     <Content Include="js\CreateRecipe.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="js\LogOn.js" />
+    <Content Include="js\profilePage.js" />
     <Content Include="js\register.js" />
     <Content Include="js\ViewRecipe.js" />
     <Content Include="RecipeServices.asmx" />
@@ -131,6 +133,7 @@
       <DependentUpon>RecipeServices.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
