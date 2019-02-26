@@ -1,64 +1,33 @@
 *{
 	box-sizing: border-box;
+	font-family: Times New Roman;
 }
 
 body{
 	margin: 0;
 	text-align: center;
+	background: url(../img/GroupEating.jpg) no-repeat center center fixed; 
+ 	background-size: cover;
 }
 
-header{
-	margin: 1em;
-}
 
-nav{
-	width: 550px;
-
-}
-nav ul{
-	margin:0;
-	padding: 0;
-	list-style: none;
-
+#entireBody{
+	background-color: rgba(256,256,256,.75);
 
 }
 
-nav li{
-	display: inline-block;
-	margin: 1em;
-}
-
-a{
-	font-weight: 900;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: 1.9rem;
-	padding: .1em;
-	color: white;
-}
-header{
-	background-color: black;
-	width: 100%;
-	height: 90px;
-	margin: 0;
-	position: relative;
-}
-
-footer{
-	background-color: black;
-	color: white;
-}
-
+/*--------------------This section is for the user to select options------------------*/
 
 .topFood img{
-	margin-right:100px;
+	margin-right:10px;
+	margin-left:10px;
 	border-style: solid;
 	border-color: black;
 }
 
 .choices img{
 	height: 300px;
-	width: 30%;
+	width: 32%;
 
 }
 
@@ -67,13 +36,23 @@ footer{
 	color: black;
 }
 
+/*-----------------------This is the header section with the logo and title---------------------*/
+header{
+	background-color: black;
+	width: 100%;
+	margin: 0;
+	position: relative;
+	height: 90px;
+}
+
 .logo img{
 	height: 260px;
 	width: 260px;
 	position: absolute;
 	top: 0px;
 	bottom: -400px;
-	left: 830px;
+	left: 550px;
+
 
 }
 .headerSection{
@@ -82,68 +61,87 @@ footer{
 	background-position: center;
 	height: 250px;
 	width: 100%;
+
 }
 
 .headerSection h1{
 	margin:0;
 	position: absolute;
-	left: 700px;
+	left: 465px;
 	top: 250px;
 	right: 670px;
 	font-size: 72px;
 
 }
 
-.menuSelection{
+
+
+
+
+
+
+/*------------------This is the header bar with navigation links------------------------*/
+.Welcome a{
+    text-decoration: none;
+    padding: .1em;
+    color: white;
+}
+
+.topnav {
+  background-color: 000;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 52px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#welcomeMSG img{
+ width: 50px;
+}
+
+#welcomeMSG a{
+	text-decoration: underline;
+	font-size: 52px;
+}
+
+#welcomeMSG{
+	text-decoration: none;
+	font-size: 1.9rem;
+	padding: .1em;
+	color: white;
+	float: 	right;	
+	position: absolute;
 	display: inline-block;
-	float: left;
+	float: right;
 	margin-top: 10px;
 	margin-bottom: 10px;
-}
-
-.searchBar{
-	float: right;
-	display: inline-block;
-	position: absolute;
-	left: 1400px;
-	top: 0px;
-	margin: 20px;
+	bottom: 15px;
+	right: 10px;
+	top: 5px;
+	font-size: 52px;
 }
 
 
-#searchLink img{
-	height: 50px;
-	position: absolute;
-	top: 0;
-	left: 310px;
-
+/*---------------this is the footer-----------------*/
+footer{
+	background-color: black;
+	color: white;
 }
 
-#bm{
-	height: 1.9rem;
-}
-#saveBM{
-	font-size: 1.9rem;
-	font-weight: 900;
-}
-
-#Categories{
-	margin: 0;
-	left: 240px;
-	top:880px;
-	font-size: 48px;
-	}
-
-#QE{
-	margin: 0;
-	left: 790px;
-	top:880px;
-	font-size: 48px;
-}
-
-#cost{
-	margin: 0;
-	left: 1350px;
-	top:880px;
-	font-size: 48px;
+footer h1{
+	margin-top: 0;
 }

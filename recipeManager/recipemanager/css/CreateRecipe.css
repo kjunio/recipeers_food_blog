@@ -1,7 +1,112 @@
 *
 {
 	box-sizing: border-box;
+	font-family: Times New Roman;
 }
+
+body{
+	margin: 0;
+	text-align: center;
+}
+
+header{
+    background-color: black;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    height: 90px;
+}
+
+.logo img{
+    height: 260px;
+    width: 260px;
+    position: absolute;
+    top: 0px;
+    bottom: -400px;
+    left: 780px;
+
+
+}
+.headerSection{
+    background-image: url("headerIMG.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    width: 100%;
+
+}
+
+.headerSection h1{
+    margin:0;
+    position: absolute;
+    left: 665px;
+    top: 250px;
+    right: 670px;
+    font-size: 72px;
+
+}
+
+
+
+
+
+
+
+/*------------------This is the header bar with navigation links------------------------*/
+.Welcome a{
+    text-decoration: none;
+    padding: .1em;
+    color: white;
+}
+
+.topnav {
+  background-color: 000;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 52px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#welcomeMSG img{
+ width: 50px;
+}
+
+#welcomeMSG a{
+  text-decoration: underline;
+  font-size: 52px;
+}
+
+#welcomeMSG{
+  text-decoration: none;
+  font-size: 1.9rem;
+  padding: .1em;
+  color: white;
+  float:  right;  
+  position: absolute;
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  bottom: 15px;
+  right: 10px;
+  top: 5px;
+  font-size: 52px;
+}
+
 
 body
 { 
@@ -37,12 +142,7 @@ table
 	width: 50%;
 }
 
-ul
-{
-	text-align: left;
-	list-style-type: none;
-}
-ol
+ul, ol
 {
 	text-align: left;
 }
@@ -53,3 +153,5 @@ ol
 	margin-right: auto;
 	margin-left: auto;
 }
+
+
