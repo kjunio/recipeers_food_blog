@@ -1,15 +1,11 @@
 
 "use strict";
-var intergredientButton = document.getElementById('addIngredient');
-intergredientButton.onclick = addIntegredient;
-var addUtensilbtn = document.getElementById('addUtensil');
-addUtensilbtn.onclick = addUtensil;
-var addDirectionbtn = document.getElementById('addStep');
-addDirectionbtn.onclick = addDirection;
+var recipeName;
+var ingredients;
+var description;
+var utensilDescription;
 
-
-
- function addIntegredient()//adds new item to ingredient list
+$("#addIngredient").on("click", function(event)//adds new item to ingredient list
 {
     var ul = document.getElementById('ingredientList')
      var li = document.createElement('li');
@@ -74,21 +70,37 @@ function addDirection()//adds new item to ingredient list
  
 };
 
+/*$("#createButton").on("click", function(event)//creates object from form fields
+{
+	var recipeName = $("#recipeNameInput").val();//stores name
+	var ingredientArray = [];//will be loaded with each ingredient
+	var utensilArray = [];//will store utensil list
+	var stepArray = [];//stores entered directions
+	var userID = "test"; //will eventually hold user ID once server interaction added
+	//the following .each functions will loop through each list in the form and add the elements to an array defined earlier
+	$(".ingredientListItem").each(function(){ingredientArray.push($(this).text())});
+	$(".utensilListItem").each(function(){utensilArray.push($(this).text())});
+	$(".stepListItem").each(function(){stepArray.push($(this).text())});
+	var recipe = {
+		name : recipeName,
+		creator : userID,
+		ingredients : ingredientArray,
+		utensils : utensilArray,
+		directions : stepArray
+	};
+});
+*/
 function PassCreateRecipeValues() {
-    var recipeName = $("#recipeNameInput").val();//stores name
-    var ingredientArray = [];//will be loaded with each ingredient
-    var utensilArray = [];//will store utensil list
-    var stepArray = [];//stores entered directions
-    //the following .each functions will loop through each list in the form and add the elements to an array defined earlier
-    $(".ingredientListItem").each(function () { ingredientArray.push($(this).text()) });
-    $(".utensilListItem").each(function () { utensilArray.push($(this).text()) });
-    $(".stepListItem").each(function () { stepArray.push($(this).text()) });
+     recipeName = document.getElementById("recipeNameInput").value;
+     ingredients = document.getElementById("ingredientList").innerHTML;
+     description = document.getElementById("stepList").innerHTML;
+     utensilDescription = document.getElementById("utensilList").innerHTML;
 
-    CreateRecipe(recipeName, ingredientArray, utensilArray, stepArray);
+    CreateRecipe(recipeName, ingredients, description, utensilDescription);
 }
-function CreateRecipe(recipeName, ingredients, utensils, directions) {
+function CreateRecipe(recipeName, ingredients, description, utensilDescription) {
     var webMethod = "../RecipeServices.asmx/RequestRecipe";
-    var parameters = "{\"recipeName\":\"" + encodeURI(recipeName) + "\",\"ingredients\":\"" + encodeURI(ingredients) + "\",\"description\":\"" + encodeURI(description) + "\",\"amountUsed\":\""+ encodeURI(amountUsed) + "\",\"utensilDescription\":\"" + "\"}";
+    var parameters = "{\"recipeName\":\"" + encodeURI(recipeName) + "\",\"ingredients\":\"" + encodeURI(ingredients) + "\",\"description\":\"" + encodeURI(description) + "\",\"utensilDescription\":\"" + "\"}";
 
     $.ajax({
         type: "POST",
