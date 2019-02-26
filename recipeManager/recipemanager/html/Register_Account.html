@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -14,20 +14,22 @@
 </head>
 <body>
     <header>
-        <div class="menuSelection">
-            <nav>
-                <ul>
-                    <li><a href="Signin.html">Login</a></li>
-                    <li><a href="splashPage.html">Home</a></li>
-                    <li><a href="CreateRecipe.html">Recipes</a></li>       
-                </ul>
-            </nav>
-        </div>          
-    </header>
 
-    <div id="registerPage"> 
-        <p id="usernameErrorMsg"> </p>
-        <form class="register" id="register" action="javascript:PassCreateAccountValues()">
+    <div class="topnav">
+      <a class="active" href="splashPage.html">Home</a>
+      <a href="Signin.html">Login</a>
+      <a href="CreateRecipe.html">Create</a>
+    </div>
+      <div class="Welcome">
+
+    <h1 id="welcomeMSG">Welcome,<span id="userProfile"><a href="Signin.html">Guest</a></span> <img id="userPicture" src="../img/profileIMG.png"></h1>
+      </div>
+    
+
+  </header>
+
+    <div id="registerPage">         
+        <form class="register" id="register" action="">        
               <label class="control-label"  for="username"><h3>Username</h3></label>
               <div class="controls">
                 <input type="text" id="username" name="username" placeholder="" required>
