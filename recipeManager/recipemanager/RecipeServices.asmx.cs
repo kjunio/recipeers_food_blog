@@ -131,38 +131,32 @@ namespace recipemanager
 
         //Allows the user to create a new recipe and insert it into the database
         [WebMethod(EnableSession = true)]
-        public string RequestRecipe(string recipeName, string ingredients, string utensils, string directions)
+        public void RequestRecipe(string recipeName, string ingredients, string utensils, string directions)
         {
-            if (Session["userID"] != null)
-            {
+           
                 string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
-                string userID = Session["userID"].ToString();
+               /* string userID = Session["userID"].ToString();*/
                 //select statement
-                string sqlSelect = "insert into recipe (userID, recipeName, ingredients, utensils, directions)" +
-                    "values(@userID, @recipeName, @indredients, @utensils, @directions); SELECT LAST_INSERT_ID();";
+                string sqlSelect = "insert into recipe (recipeName, ingredients, utensils, directions)" +
+                    "values(@recipeNameValue, @ingredientsValue, @utensilsValue, @directionsValue);";
 
                 MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
                 MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
-                sqlCommand.Parameters.AddWithValue("@userID", HttpUtility.UrlDecode(userID));
+               /* sqlCommand.Parameters.AddWithValue("@userID", HttpUtility.UrlDecode(userID));*/
                 sqlCommand.Parameters.AddWithValue("@recipeNameValue", HttpUtility.UrlDecode(recipeName));
                 sqlCommand.Parameters.AddWithValue("@ingredientsValue", HttpUtility.UrlDecode(ingredients));
-                sqlCommand.Parameters.AddWithValue("@descriptionValue", HttpUtility.UrlDecode(utensils));
-                sqlCommand.Parameters.AddWithValue("@amountUsedValue", HttpUtility.UrlDecode(directions));
+                sqlCommand.Parameters.AddWithValue("@utensilsValue", HttpUtility.UrlDecode(utensils));
+                sqlCommand.Parameters.AddWithValue("@directionsValue", HttpUtility.UrlDecode(directions));
 
 
                 //open the connection
                 sqlConnection.Open();
-                try
-                {
-                    string accountID = Convert.ToInt32(sqlCommand.ExecuteScalar());
-                    return accountID;
-                }
-                catch (Exception e)
-                {
-                }
-                sqlConnection.Close();
-            }
+            sqlCommand.ExecuteScalar();
+
+            sqlConnection.Close();
+               
+            
             
         }
 
@@ -197,7 +191,7 @@ namespace recipemanager
         }
 
         //checks if user is logged in, return userID and email true
-        [WebMethod(EnableSession = true)]
+       /* [WebMethod(EnableSession = true)]
         public string GetProfile()
         {
             if (Session["userID"] != null)
@@ -216,7 +210,7 @@ namespace recipemanager
                 DataTable sqlDt = new DataTable();
                 sqlDa.Fill(sqlDt);
 
-                User userProfile = new User
+                /*User userProfile = new User
                 {
                     session = true,
                     userId = userID,
@@ -234,9 +228,9 @@ namespace recipemanager
                 return userProfile;
             }
 
-        }
+        }*/
 
-        //checks if user is logged in, return userID and email true
+       /* //checks if user is logged in, return userID and email true
         [WebMethod(EnableSession = true)]
         public string GetProfileRecipes(string userID)
         {            
@@ -254,15 +248,15 @@ namespace recipemanager
                 DataTable sqlDt = new DataTable();
                 sqlDa.Fill(sqlDt);
 
-                Recipe userRecipes = new Recipe
+               /* Recipe userRecipes = new Recipe
                 {   
                     recipeId = sqlDt.Rows[0]["recipeID"].ToString(),
                     recipeName = sqlDt.Rows[0]["recipeName"].ToString()
                 };
 
-                return userRecipes;           
+                return userRecipes;    */       
 
         }
 
     }
-}
+

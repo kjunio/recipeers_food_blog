@@ -1,6 +1,6 @@
 
 "use strict";
-var intergredientButton = document.getElementById('addIngredient');
+/*var intergredientButton = document.getElementById('addIngredient');
 intergredientButton.onclick = addIntegredient;
 var addUtensilbtn = document.getElementById('addUtensil');
 addUtensilbtn.onclick = addUtensil;
@@ -11,7 +11,7 @@ addDirectionbtn.onclick = addDirection;
 
  function addIntegredient()//adds new item to ingredient list
 {
-    var ul = document.getElementById('ingredientList')
+     var ul = document.getElementById('ingredientList');
      var li = document.createElement('li');
     
     //grab ingredient name from input
@@ -30,7 +30,7 @@ addDirectionbtn.onclick = addDirection;
     
     document.getElementById('ingredientNameInput').value = "";
     document.getElementById('amountUsedInput').value = "";
-};
+}
 
             
 
@@ -52,7 +52,7 @@ function addUtensil()//adds new item to ingredient list
     //appends item to existing list
     document.getElementById('utensilDescriptionInput').value = "";
  
-};
+}
 
 function addDirection()//adds new item to ingredient list
 {
@@ -72,23 +72,45 @@ function addDirection()//adds new item to ingredient list
     //appends item to existing list
     document.getElementById('stepDescriptionInput').value = "";
  
-};
+};*/
+var recipeName;
+var ingredients;
+var directions
+var utensils;
+
+$("#addIngredient").on("click", function (event)//adds new item to ingredient list
+{
+    var ingredientName = $("#ingredientNameInput").val();//grab ingredient name from input
+    var amountUsed = $("#amountUsedInput").val();//grab amount used from input
+    $("#ingredientList").append($('<li/>', { 'class': 'ingredientListItem', 'text': amountUsed + " " + ingredientName }));//appends item to existing list
+});
+$("#addUtensil").on("click", function (event)//adds new item to utensil list
+{
+    var utensilDescription = $("#utensilDescriptionInput").val();//grab utensil description from input
+    $("#utensilList").append($('<li/>', { 'class': 'utensilListItem', 'text': utensilDescription }));//appends item to existing list
+});
+$("#addStep").on("click", function (event)//adds new item to step list
+{
+    var stepDescription = $("#stepDescriptionInput").val();//grab step description from input
+    $("#stepList").append($('<li/>', { 'class': 'stepListItem', 'text': stepDescription }));//appends item to existing list
+});
+
+
+
 
 function PassCreateRecipeValues() {
-    var recipeName = $("#recipeNameInput").val();//stores name
-    var ingredientArray = [];//will be loaded with each ingredient
-    var utensilArray = [];//will store utensil list
-    var stepArray = [];//stores entered directions
-    //the following .each functions will loop through each list in the form and add the elements to an array defined earlier
-    $(".ingredientListItem").each(function () { ingredientArray.push($(this).text()) });
-    $(".utensilListItem").each(function () { utensilArray.push($(this).text()) });
-    $(".stepListItem").each(function () { stepArray.push($(this).text()) });
+    recipeName = document.getElementById('recipeNameInput').value;
+    ingredients = document.getElementById('ingredientList').innerHTML;
+    utensils = document.getElementById('utensilList').innerHTML;
+    directions = document.getElementById('stepList').innerHTML;
 
-    CreateRecipe(recipeName, ingredientArray, utensilArray, stepArray);
+    CreateRecipe(recipeName, ingredients, utensils, directions);
+
+
 }
 function CreateRecipe(recipeName, ingredients, utensils, directions) {
     var webMethod = "../RecipeServices.asmx/RequestRecipe";
-    var parameters = "{\"recipeName\":\"" + encodeURI(recipeName) + "\",\"ingredients\":\"" + encodeURI(ingredients) + "\",\"description\":\"" + encodeURI(description) + "\",\"amountUsed\":\""+ encodeURI(amountUsed) + "\",\"utensilDescription\":\"" + "\"}";
+    var parameters = "{\"recipeName\":\"" + encodeURI(recipeName) + "\",\"ingredients\":\"" + encodeURI(ingredients) + "\",\"utensils\":\"" + encodeURI(utensils) + "\",\"directions\":\""+ encodeURI(directions)  + "\"}";
 
     $.ajax({
         type: "POST",
@@ -97,10 +119,11 @@ function CreateRecipe(recipeName, ingredients, utensils, directions) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (msg) {
-            if (msg.d != null) {
-                var recipeID = msg.d;
-                window.open("ViewRecipe.html?id="+ msg.d, "_self");
-            }
+            /*if (msg.d !== null) {
+                var recipeID = msg.d;*/
+              /*  window.open("ViewRecipe.html?id="+ msg.d, "_self");*/
+            window.open("ViewRecipe.html", "_self");
+            
         },
         error: function (e) {
             alert("boo...");
